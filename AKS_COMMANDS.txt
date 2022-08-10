@@ -1,0 +1,44 @@
+***COMANDO KUBERNETES***
+
+
+*VALIDAR PROVIDERS
+az provider show -n Microsoft.OperationsManagement -o table
+az provider show -n Microsoft.OperationalInsights -o table
+
+*REGISTRAR PROVIDERS
+az provider register --namespace Microsoft.OperationsManagement
+az provider register --namespace Microsoft.OperationalInsights
+
+*VALIDAR CLUSTERS EXISTENTES
+kubectl config get-contexts
+
+*CRIAR CLUSTER
+az aks get-credentials -n aks-tftec -g RG-AZ303
+
+*VALIDAR NODES DO CLUSTER
+kubectl get nodes
+
+*VALIDAR CONSUMO DE HARDWARE DOS NODES
+kubectl top nodes
+
+*DEPLOY APLICAÇÃO
+kubectl apply -f azure-vote.yaml
+
+*IP DE ACESSO
+kubectl get service azure-vote-front --watch
+
+*VALIDAR DEPLOYS
+kubectl get deployments
+
+*VALIDAR PODS
+kubectl get pods --show-labels
+
+*SCALE PODS
+kubectl scale --replicas=2 deployment/azure-vote-front
+kubectl scale --replicas=2 deployment/azure-vote-back
+
+*SCALE NODES
+az aks scale --resource-group RG-AZ303 --name aks-tftec --node-count 3
+
+*VALIDAR EM QUAL NODE ESTÃO OS PODS
+kubectl get pod -o=custom-columns=NODE:.spec.nodeName,POD:.metadata.name
