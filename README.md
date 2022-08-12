@@ -11,20 +11,19 @@
 
 <img width="653" alt="image" src="https://user-images.githubusercontent.com/43493818/183902516-55b41d83-0647-4215-89d6-0e89dd4038d8.png">
 
-## Le Projet
-*En cours de rédaction* 
 
+#### Quelques étapes après la création d'un cluster défaut dans le portail Azure
 
-1. 
+Administration du cluster AKS via Azure CLI (*Cloud Shell*) :
 
+1. Je valide quels sont mes cluters actifs : 
 ```
 fernanda@Azure:~$ kubectl config get-contexts
 CURRENT   NAME          CLUSTER       AUTHINFO                            NAMESPACE
 *         aks-orlando   aks-orlando   clusterUser_rg-akslab_aks-orlando  
 ```
 
-2.
-
+2. Après la validation de mes accès, je regarde combien de nodes sont disponibles :   
 ```
 fernanda@Azure:~$ kubectl top nodes
 NAME                                CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
@@ -33,8 +32,7 @@ aks-agentpool-35944412-vmss000001   120m         6%     1502Mi          69%
 aks-agentpool-35944412-vmss000002   112m         5%     1439Mi          66%     
 ```
 
-3.
-
+3. 
 ```
 fernanda@Azure:~$ kubectl scale --replicas=3 deployment/azure-vote-front
 Warning: spec.template.spec.nodeSelector[beta.kubernetes.io/os]: deprecated since v1.14; use "kubernetes.io/os" instead
